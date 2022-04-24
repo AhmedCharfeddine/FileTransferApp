@@ -1,0 +1,16 @@
+.main {
+    margin: 2%;
+}
+
+.form {
+    margin-top: 5%;
+    margin-inline: 10%;
+}
+
+.clipboardBtn {
+    text-align: right;
+}
+
+.card-header {
+    padding-bottom: 5%;
+}
