@@ -63,7 +63,7 @@
                 </button>
             </div>
 
-            <div id="room-peer1" hidden>
+            <div id="room-peer1" class="card" hidden>
                 <div class="card-header">
                     <h2>
                         Room
@@ -74,8 +74,27 @@
                 </div>
                 <button type="button" id="helloBtnPeer1" class="mdc-button mdc-button--raised">
                     <i class="material-icons mdc-button__icon" aria-hidden="true">login</i>
-                    <span class="mdc-button__label">Say Hello!</span>
+                    <span class="mdc-button__label">Say Hello to peer2!</span>
                 </button>
+
+                <div>
+                    <input type="file" id="file-input-peer1">
+                </div>
+            </div>
+
+            <div id="room-peer2" class="card" hidden>
+                <div class="card-header">
+                    <h2>
+                        Room
+                    </h2>
+                    <h4>
+                        peer 2
+                    </h4>
+                </div>
+                <div>
+                    <input type="file" id="file-input-peer2">
+                </div>
+                
             </div>
 
             <div id="peer2-form" class="form" hidden>
@@ -113,5 +132,6 @@
         </div>
 
         <script src="app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"></script>
     </body>
 </html>

@@ -20,7 +20,7 @@ function createRoom() {
     const sendChannel = localConnection.createDataChannel("sendChannel");
 
 
-    sendChannel.onmessage = e =>  console.log("messsage received: "  + e.data )
+    sendChannel.onmessage = e =>  console.log("received: "  + e.data )
     sendChannel.onopen = e => {
         console.log("channel opened");
         document.querySelector("#peer1-form").hidden = true;
@@ -29,6 +29,13 @@ function createRoom() {
         document.querySelector("#helloBtnPeer1").onclick = () => {
             sendChannel.send("hello from peer1!");
         }
+
+        const input = document.querySelector('#file-input-peer1');
+        input.addEventListener('change', () =>{
+            const file = input.files[0];
+            sendFile(sendChannel, file);
+        })
+
     }
     sendChannel.onclose = e => {
         console.log("channel closed");
@@ -41,7 +48,6 @@ function createRoom() {
         const answer = JSON.parse(document.querySelector("#sdp-from-peer2").value);
         localConnection.setRemoteDescription(answer).then(a=>{
             console.log("connection opened!");
-            // TODO: add changes to UI to hide form and display transfer options
         });
     }
 }
@@ -59,10 +65,9 @@ function joinRoom() {
     remoteConnection.onicecandidate = e =>  {
         console.log("NEW ice candidate on localconnection. displaying SDP" );
         //document.querySelector('#peer2-generated-sdp').innerHTML = JSON.stringify(remoteConnection.localDescription);
-        console.log(remoteConnection.localDescription);
     }
 
-    remoteConnection.ondatachannel= e => {
+    remoteConnection.ondatachannel = e => {
         const receiveChannel = e.channel;
         receiveChannel.onmessage = e =>  console.log("messsage received: "  + e.data)
         receiveChannel.onopen = e => {
@@ -87,6 +92,11 @@ function joinRoom() {
                     document.querySelector('#peer2-generated-sdp').innerHTML = JSON.stringify(remoteConnection.localDescription)))
         })
     }
+
+    document.querySelector('#file-input-peer1').addEventListener('change', () =>{
+        const file = input.files[0];
+        sendFile(receiveChannel, file);
+    })
     
 }
 
@@ -103,7 +113,15 @@ function copyToClipboard(text) {
     navigator.clipboard.writeText(copyText.innerHTML);
 } 
 
-
+function sendFile(dataChannel, file) {
+    console.log('Sending', file);
+        
+    // We convert the file from Blob to ArrayBuffer, since some browsers don't work with blobs
+    file.arrayBuffer().then(buffer => {
+      // Off goes the file!
+      dataChannel.send(buffer);
+    });
+}
 
 document.querySelector('#closeBtn').disabled = true;
 document.querySelector('#createBtn').addEventListener('click', createRoom);
