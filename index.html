@@ -16,15 +16,15 @@
         <div class="main">
             <h1>File Transfer App</h1>
             <div id="buttons">
-                <button class="mdc-button mdc-button--raised" id="createBtn">
+                <button class="mdc-button mdc-button--raised btn" id="createBtn">
                     <i class="material-icons mdc-button__icon" aria-hidden="true">add_circle_outline</i>
                     <span class="mdc-button__label">Create Room</span>
                 </button>
-                <button class="mdc-button mdc-button--raised" id="joinBtn">
+                <button class="mdc-button mdc-button--raised btn" id="joinBtn">
                     <i class="material-icons mdc-button__icon" aria-hidden="true">login</i>
                     <span class="mdc-button__label">Join room</span>
                 </button>
-                <button class="mdc-button mdc-button--raised" disabled id="closeBtn">
+                <button class="mdc-button mdc-button--raised btn" disabled id="closeBtn">
                     <i class="material-icons mdc-button__icon" aria-hidden="true">close</i>
                     <span class="mdc-button__label">Close</span>
                 </button>
@@ -45,7 +45,7 @@
                         <br>
                         <code id="peer1-generated-sdp">getting your SDP...</code>
                         <br>
-                        <button type="button" onclick="copyToClipboard('peer1-generated-sdp');" class="clipboardBtn mdc-button mdc-button--raised">
+                        <button type="button" onclick="copyToClipboard('peer1-generated-sdp');" class="btn clipboardBtn mdc-button mdc-button--raised">
                             <i class="material-icons mdc-button__icon" aria-hidden="true">content_copy</i>
                             <span class="mdc-button__label">Copy to clipboard</span>
                         </button>
@@ -57,7 +57,7 @@
                     </div>
                 </form>
 
-                <button type="button" id="openConnectionBtn" class="mdc-button mdc-button--raised">
+                <button type="button" id="openConnectionBtn" class="btn mdc-button mdc-button--raised btn">
                     <i class="material-icons mdc-button__icon" aria-hidden="true">login</i>
                     <span class="mdc-button__label">Open connection</span>
                 </button>
@@ -72,13 +72,13 @@
                         peer 1
                     </h4>
                 </div>
-                <button type="button" id="helloBtnPeer1" class="mdc-button mdc-button--raised">
+                <button type="button" id="helloBtnPeer1" class="btn mdc-button mdc-button--raised btn">
                     <i class="material-icons mdc-button__icon" aria-hidden="true">login</i>
                     <span class="mdc-button__label">Say Hello to peer2!</span>
                 </button>
 
                 <div>
-                    <input type="file" id="file-input-peer1">
+                    <input type="file" id="file-input-peer1" class="input">
                 </div>
             </div>
 
@@ -91,8 +91,13 @@
                         peer 2
                     </h4>
                 </div>
+
+                <button type="button" id="helloBtnPeer2" class="btn mdc-button mdc-button--raised">
+                    <i class="material-icons mdc-button__icon" aria-hidden="true">login</i>
+                    <span class="mdc-button__label">Say Hello to peer1!</span>
+                </button>
                 <div>
-                    <input type="file" id="file-input-peer2">
+                    <input type="file" id="file-input-peer2" class="input">
                 </div>
                 
             </div>
@@ -114,7 +119,7 @@
                     </div>
                 </form>
 
-                <button type="button" id="sendAnswerBtn" class="mdc-button mdc-button--raised">
+                <button type="button" id="sendAnswerBtn" class="btn mdc-button mdc-button--raised">
                     <i class="material-icons mdc-button__icon" aria-hidden="true">login</i>
                     <span class="mdc-button__label">Send Answer</span>
                 </button>
@@ -123,7 +128,7 @@
                     <br>
                     <code id="peer2-generated-sdp">getting your SDP...</code>
                     <br>
-                    <button type="button" onclick="copyToClipboard('peer2-generated-sdp');" class="clipboardBtn mdc-button mdc-button--raised">
+                    <button type="button" onclick="copyToClipboard('peer2-generated-sdp');" class="btn clipboardBtn mdc-button mdc-button--raised">
                         <i class="material-icons mdc-button__icon" aria-hidden="true">content_copy</i>
                         <span class="mdc-button__label">Copy to clipboard</span>
                     </button>

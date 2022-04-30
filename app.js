@@ -46,7 +46,7 @@ function createRoom() {
 
     document.querySelector('#openConnectionBtn').onclick = () => {
         const answer = JSON.parse(document.querySelector("#sdp-from-peer2").value);
-        localConnection.setRemoteDescription(answer).then(a=>{
+        localConnection.setRemoteDescription(new RTCSessionDescription(answer)).then(a=>{
             console.log("connection opened!");
         });
     }
@@ -69,11 +69,15 @@ function joinRoom() {
 
     remoteConnection.ondatachannel = e => {
         const receiveChannel = e.channel;
-        receiveChannel.onmessage = e =>  console.log("messsage received: "  + e.data)
+        receiveChannel.onmessage = e =>  console.log("received: "  + e.data)
         receiveChannel.onopen = e => {
             console.log("channel opened");
             document.querySelector("#peer2-form").hidden = true;
             document.querySelector("#room-peer2").hidden = false;
+
+            document.querySelector("#helloBtnPeer2").onclick = () => {
+                receiveChannel.send("hello from peer2!");
+            }
         }
         receiveChannel.onclose = e => {
             console.log("channel closed");
@@ -84,7 +88,7 @@ function joinRoom() {
 
     document.querySelector('#sendAnswerBtn').onclick = () => {
         const offer = JSON.parse(document.querySelector('#sdp-from-peer1').value);
-        remoteConnection.setRemoteDescription(offer).then(a=>{
+        remoteConnection.setRemoteDescription(new RTCSessionDescription(offer)).then(a=>{
             document.querySelector('#peer2-sdp').hidden = false;
             // creating answer
             remoteConnection.createAnswer().then(a => 

@@ -14,3 +14,15 @@
 .card-header {
     padding-bottom: 5%;
 }
+
+.card {
+    margin: 5%;
+}
+
+.btn {
+    margin: 10px;
+}
+
+.input {
+    margin: 2%;
+}
